@@ -15,7 +15,7 @@ node {
     println HUB_ORG
     println SFDC_HOST
     println CONNECTED_APP_CONSUMER_KEY
-    //def toolbelt = tool 'sfdx'
+    def toolbelt = tool 'sfdx'
 
     stage('Checkout git Source') {
         // when running in multi-branch job, one must issue this command
