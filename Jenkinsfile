@@ -15,7 +15,8 @@ node {
     println HUB_ORG
     println SFDC_HOST
     println CONNECTED_APP_CONSUMER_KEY
-    def toolbelt = tool 'sfdx'
+    //def toolbelt = tool 'sfdx'
+
     stage('Checkout git Source') {
         // when running in multi-branch job, one must issue this command
         checkout scm
@@ -32,9 +33,9 @@ node {
 			
 			// need to pull out assigned username
 			if (isUnix()) {
-				rmsg = sh returnStdout: true, script: "${toolbelt} force:mdapi:deploy -d manifest/. -u ${HUB_ORG}"
+				rmsg = sh returnStdout: true, script: "sfdx force:mdapi:deploy -w 10 -d force-app/main/default/. -u ${HUB_ORG}"
 			}else{
-			   rmsg = bat returnStdout: true, script: "\"${toolbelt}\" force:mdapi:deploy -d manifest/. -u ${HUB_ORG}"
+			   rmsg = bat returnStdout: true, script: "sfdx force:source:retrieve -u ${HUB_ORG} -x ./force-app/main/default//package.xml -w 10"
 			}
 			  
             printf rmsg
