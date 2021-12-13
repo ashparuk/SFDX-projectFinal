@@ -38,6 +38,19 @@ node {
 			   rmsg = bat returnStdout: true, script: "\"${toolbelt}\" force:source:retrieve -u ${HUB_ORG} -x ./force-app/main/default//package.xml -w 10"
 			}
 			  
+			  
+			  withCredentials([gitUsernamePassword(credentialsId: '13294c84-a41f-448e-b7fb-45d49565d55c', gitToolName: 'Default')]) {
+				bat 'git config --global user.email "paruk.ashraf@gmail.com"'
+				bat 'git config --global user.name "ashparuk"'
+				bat 'git reset'
+				bat 'git add -A force-app/main/default/classes/.'
+				bat 'git commit -m "push to git"'
+		
+ bat 'git push -f https://github.com/ashparuk/SFDX-projectFinal.git HEAD:main'
+				}
+			  
+			  
+			  
             printf rmsg
             println('Hello from a Job DSL script!')
             println(rmsg)
