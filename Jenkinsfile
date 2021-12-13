@@ -35,7 +35,7 @@ node {
 			if (isUnix()) {
 				rmsg = sh returnStdout: true, script: "${toolbelt} force:mdapi:deploy -d manifest/. -u ${HUB_ORG}"
 			}else{
-			   rmsg = bat returnStdout: true, script: "\"${toolbelt}\" force:source:retrieve -u ${HUB_ORG} -x manifest/. -w 10"
+			   rmsg = bat returnStdout: true, script: "\"${toolbelt}\" force:source:retrieve -u ${HUB_ORG} -x ./force-app/main/default//package.xml -w 10"
 			}
 			  
             printf rmsg
